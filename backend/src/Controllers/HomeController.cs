@@ -9,11 +9,6 @@ namespace src.Controllers
         [HttpGet(Name = "GetHome")]
         public IActionResult Get()
         {
-            /* Return a JSON response with the following structure:
-             * {
-             *   "data": "Hello World!"
-             * }
-             */
             return Ok(new { data = "Hello World!" });
         }
     }
