@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+
+ENV DOTNET_USE_POLLING_FILE_WATCHER 1
+
+WORKDIR /src
+
+COPY . .
+
+ENTRYPOINT dotnet watch run  --urls=http://+:5240 --project src/src.csproj
