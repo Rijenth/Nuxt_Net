@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  nuxt:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: nuxt
+    command: yarn dev
+    depends_on:
+      - api
+    image: nuxt_dev
+    ports:
+      - 3000:3000
+      - "24678:24678"
+    volumes:
+      - ./frontend:/app/frontend
+      - /frontend/node_modules
+    restart: always
+    networks:
+      - bridge
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: api
+    image: api_dev
+    ports:
+      - "5240:5240"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5240;
+    restart: always
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge
