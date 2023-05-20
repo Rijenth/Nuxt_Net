@@ -34,24 +34,5 @@
     onMounted(() => {
         getData();
     })
-
-/*     useAsyncData(async () => {
-        const { data } = await useFetch('http://localhost:5240/api/home');
-        return data;
-    }); */
-
-/*     const data = ref(null);
-
-    const getData = async () => {
-        const res = await fetch('http://localhost:5240/api/home');
-        console.log(data);
-    }
-
-    onMounted(() => {
-        getData();
-    }) */
-
-    
-
 </script>
   
