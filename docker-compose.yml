@@ -36,6 +36,26 @@ services:
     restart: always
     networks:
       - bridge
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d/:ro
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Rijenth123+
+      MYSQL_DATABASE: ASP
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
 networks:
   bridge:
